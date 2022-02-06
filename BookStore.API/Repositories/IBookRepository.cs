@@ -9,7 +9,7 @@ namespace BookStore.API.Repositories
         public Task<BookModel?> GetBookByIdAsync(int id);
         public Task<int> AddBookAsync(BookModel bookModel);
         public Task UpdateBookAsync(int id, BookModel bookModel);
-        public Task UpdateBookByPatchAsync(int id, JsonPatchDocument bookModel);
+        public Task UpdateBookByPatchAsync(int id, JsonPatchDocument jsonObject);
         public Task DeleteBookAsync(int id);
     }
 }

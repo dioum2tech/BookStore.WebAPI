@@ -65,13 +65,13 @@ namespace BookStore.API.Repositories
             await context.SaveChangesAsync();
         }
 
-        public async Task UpdateBookByPatchAsync(int id, JsonPatchDocument bookModel)
+        public async Task UpdateBookByPatchAsync(int id, JsonPatchDocument jsonObject)
         {
             var book = await context.Book.FindAsync(id);
 
             if (book != null)
             {
-                bookModel.ApplyTo(book);
+                jsonObject.ApplyTo(book);
                 await context.SaveChangesAsync();
             }
         }
