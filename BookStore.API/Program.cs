@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers().AddNewtonsoftJson();
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddTransient<IBookRepository, BookRepository>();
 builder.Services.AddDbContext<BookStoreContext>(
     optionsBuilder => optionsBuilder.UseSqlServer(
