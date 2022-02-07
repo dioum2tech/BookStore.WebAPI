@@ -13,6 +13,13 @@ builder.Services.AddTransient<IBookRepository, BookRepository>();
 builder.Services.AddDbContext<BookStoreContext>(
     optionsBuilder => optionsBuilder.UseSqlServer(
         builder.Configuration.GetConnectionString("BookStoreDB")));
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
 
@@ -24,6 +31,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors();
 app.UseAuthorization();
 app.MapControllers();
 
