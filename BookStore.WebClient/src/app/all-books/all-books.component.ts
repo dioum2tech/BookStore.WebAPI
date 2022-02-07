@@ -4,7 +4,7 @@ import { BookService } from '../book.service';
 @Component({
   selector: 'app-all-books',
   templateUrl: './all-books.component.html',
-  styleUrls: ['./all-books.component.scss']
+  styleUrls: ['./all-books.component.css']
 })
 export class AllBooksComponent implements OnInit {
 
@@ -21,5 +21,4 @@ export class AllBooksComponent implements OnInit {
       this.books = result;
     });
   }
-
 }

@@ -8,9 +8,14 @@ import { Observable } from 'rxjs';
 export class BookService {
 
   private basePath = 'https://localhost:5001/api/books/';
+  
   constructor(private http: HttpClient) { }
 
   public getBooks(): Observable<any> {
     return this.http.get(this.basePath);
+  }
+
+  public addBook(book: any): Observable<any> {
+    return this.http.post(this.basePath, book);
   }
 }
