@@ -45,9 +45,9 @@ namespace BookStore.API.Controllers
         }
 
         [HttpPatch("{id}")]
-        public async Task<IActionResult> UpdateBookByPatch([FromRoute] int id, [FromBody] JsonPatchDocument bookModel)
+        public async Task<IActionResult> UpdateBookByPatch([FromRoute] int id, [FromBody] JsonPatchDocument jsonObject)
         {
-            await bookRepository.UpdateBookByPatchAsync(id, bookModel);
+            await bookRepository.UpdateBookByPatchAsync(id, jsonObject);
             return Ok();
         }
 

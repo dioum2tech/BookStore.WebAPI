@@ -1,4 +1,5 @@
-﻿using BookStore.API.Data;
+﻿using AutoMapper;
+using BookStore.API.Data;
 using BookStore.API.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.EntityFrameworkCore;
@@ -8,34 +9,24 @@ namespace BookStore.API.Repositories
     public class BookRepository : IBookRepository
     {
         private readonly BookStoreContext context;
+        private readonly IMapper mapper;
 
-        public BookRepository(BookStoreContext context)
+        public BookRepository(BookStoreContext context, IMapper mapper)
         {
             this.context = context;
+            this.mapper = mapper;
         }
 
         public async Task<List<BookModel>> GetAllBooksAsync()
         {
-            var books = await context.Book.Select(x => new BookModel()
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Description = x.Description
-            }).ToListAsync();
-
-            return books;
+            var books = await context.Book.ToListAsync();
+            return mapper.Map<List<BookModel>>(books);
         }
 
         public async Task<BookModel?> GetBookByIdAsync(int id)
         {
-            var book = await context.Book.Where(x => x.Id == id).Select(x => new BookModel()
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Description = x.Description
-            }).FirstOrDefaultAsync();
-
-            return book;
+            var book = await context.Book.FindAsync(id);
+            return mapper.Map<BookModel>(book);
         }
 
         public async Task<int> AddBookAsync(BookModel bookModel)
@@ -65,13 +56,13 @@ namespace BookStore.API.Repositories
             await context.SaveChangesAsync();
         }
 
-        public async Task UpdateBookByPatchAsync(int id, JsonPatchDocument bookModel)
+        public async Task UpdateBookByPatchAsync(int id, JsonPatchDocument jsonObject)
         {
             var book = await context.Book.FindAsync(id);
 
             if (book != null)
             {
-                bookModel.ApplyTo(book);
+                jsonObject.ApplyTo(book);
                 await context.SaveChangesAsync();
             }
         }
