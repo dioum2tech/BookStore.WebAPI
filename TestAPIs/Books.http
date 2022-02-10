@@ -11,6 +11,7 @@ GET {{HOST_NAME}}/api/books/5/  HTTP/1.1
 ### AddBook
 POST {{HOST_NAME}}/api/books/ HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer XXX
 
 {
     "Name": "Ultimate ASP.NET Core Web API",
@@ -20,6 +21,7 @@ Content-Type: application/json
 ### UpdateBook
 PUT {{HOST_NAME}}/api/books/5/  HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer XXX
 
 {
     "name": "Software Development and Professional Practice",
@@ -29,6 +31,7 @@ Content-Type: application/json
 ### UpdateBookByPatch
 PATCH {{HOST_NAME}}/api/books/5/  HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer XXX
 
 [
     {
@@ -39,4 +42,5 @@ Content-Type: application/json
 ]
 
 ### DeleteBook
-DELETE {{HOST_NAME}}/api/books/11/  HTTP/1.1
+DELETE {{HOST_NAME}}/api/books/7/  HTTP/1.1
+Authorization: Bearer XXX
