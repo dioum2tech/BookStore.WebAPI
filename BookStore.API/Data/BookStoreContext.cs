@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 #nullable disable
 
 namespace BookStore.API.Data
 {
-    public class BookStoreContext : DbContext
+    public class BookStoreContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Book> Book { get; set; }
 

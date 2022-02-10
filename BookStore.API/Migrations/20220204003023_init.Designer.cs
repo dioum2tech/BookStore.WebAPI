@@ -12,7 +12,7 @@ namespace BookStore.API.Migrations
 {
     [DbContext(typeof(BookStoreContext))]
     [Migration("20220204003023_init")]
-    partial class init
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

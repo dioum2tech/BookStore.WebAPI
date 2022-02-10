@@ -1,0 +1,16 @@
+
+@HOST_NAME = https://localhost:5001
+
+### SignUp
+POST {{HOST_NAME}}/api/accounts/signup/  HTTP/1.1
+Content-Type: application/json
+
+{
+    "FirstName": "Ahmed",
+    "LastName": "Fathy",
+    "Email": "ahmed.fathy.dev@gmail.com",
+    "Password": "Fathy@123",
+    "ConfirmedPassword": "Fathy@123"
+}
+
+### SignIn
