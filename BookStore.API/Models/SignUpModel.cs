@@ -5,14 +5,14 @@ namespace BookStore.API.Models
     public class SignUpModel
     {
         [Required]
-        public string FirstName { get; set; } = string.Empty;
+        public string FirstName { get; set; } = null!;
         [Required]
-        public string LastName { get; set; } = string.Empty;
+        public string LastName { get; set; } = null!;
         [Required, EmailAddress]
-        public string Email { get; set; } = string.Empty;
+        public string Email { get; set; } = null!;
         [Required, Compare("ConfirmedPassword")]
-        public string Password { get; set; } = string.Empty;
+        public string Password { get; set; } = null!;
         [Required]
-        public string ConfirmedPassword { get; set; } = string.Empty;
+        public string ConfirmedPassword { get; set; } = null!;
     }
 }

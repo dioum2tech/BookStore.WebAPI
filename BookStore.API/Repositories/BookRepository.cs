@@ -19,13 +19,13 @@ namespace BookStore.API.Repositories
 
         public async Task<List<BookModel>> GetAllBooksAsync()
         {
-            var books = await context.Book.ToListAsync();
+            var books = await context.Books!.ToListAsync();
             return mapper.Map<List<BookModel>>(books);
         }
 
         public async Task<BookModel?> GetBookByIdAsync(int id)
         {
-            var book = await context.Book.FindAsync(id);
+            var book = await context.Books!.FindAsync(id);
             return mapper.Map<BookModel>(book);
         }
 
@@ -37,7 +37,7 @@ namespace BookStore.API.Repositories
                 Description = bookModel.Description
             };
 
-            context.Book.Add(book);
+            context.Books!.Add(book);
             await context.SaveChangesAsync();
 
             return book.Id;
@@ -52,13 +52,13 @@ namespace BookStore.API.Repositories
                 Description = bookModel.Description
             };
 
-            context.Book.Update(book);
+            context.Books!.Update(book);
             await context.SaveChangesAsync();
         }
 
         public async Task UpdateBookByPatchAsync(int id, JsonPatchDocument jsonObject)
         {
-            var book = await context.Book.FindAsync(id);
+            var book = await context.Books!.FindAsync(id);
 
             if (book != null)
             {
@@ -71,7 +71,7 @@ namespace BookStore.API.Repositories
         {
             var book = new Book() { Id = id };
 
-            context.Book.Remove(book);
+            context.Books!.Remove(book);
             await context.SaveChangesAsync();
         }
     }
