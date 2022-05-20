@@ -32,3 +32,11 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Serigne Dioume – MSDN(897dffae-66d3-40c3-aa75-409294baa9c0)'
+    appType: 'webApp'
+    WebAppName: 'bookstore-demoapi'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
